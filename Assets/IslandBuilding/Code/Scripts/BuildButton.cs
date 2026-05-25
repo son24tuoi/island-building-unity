@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.EventSystems;
 
-namespace Construction
+namespace One.IslandBuilding
 {
     public class BuildButton : MonoBehaviour
     {
@@ -12,21 +12,23 @@ namespace Construction
         [SerializeField] private float holdTimeThreshold = 0.5f;
         [SerializeField] private bool isUpdating;
 
-        private float _holdTime;
-        private Coroutine _updateRoutine;
+        private float holdTime;
+        private Coroutine updateRoutine;
 
         public void OnPointerDown()
         {
-            Debug.Log("Down");
-            _updateRoutine = StartCoroutine(IEUpdate());
+            // Debug.Log("Pointer Down");
+            constructionController.LaunchBrick();
+            holdTime = 0f;
+            updateRoutine = StartCoroutine(IEUpdate());
         }
 
         public void OnPointerUp()
         {
-            Debug.Log("Up");
-            _holdTime = 0f;
+            // Debug.Log("Pointer Up");
+            holdTime = 0f;
             isUpdating = false;
-            StopCoroutine(_updateRoutine);
+            StopCoroutine(updateRoutine);
         }
 
         private IEnumerator IEUpdate()
@@ -34,12 +36,12 @@ namespace Construction
             isUpdating = true;
             while (isUpdating)
             {
-                _holdTime += Time.deltaTime;
+                holdTime += Time.deltaTime;
 
-                if (_holdTime >= holdTimeThreshold)
+                if (holdTime >= holdTimeThreshold)
                 {
-                    Debug.Log("Fly");
-                    _holdTime = 0f;
+                    constructionController.LaunchBrick();
+                    holdTime = 0f;
                 }
                 yield return null;
             }

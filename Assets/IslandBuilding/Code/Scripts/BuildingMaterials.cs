@@ -2,17 +2,17 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-namespace Construction.Building
+namespace One.IslandBuilding
 {
     public class BuildingMaterials : MonoBehaviour
     {
         [SerializeField] private Renderer mainRenderer;
         [SerializeField] private MeshFilter meshFilter;
 
-        private static int _fillProgressID = Shader.PropertyToID("_Fill_Progress");
-        private static int _heightID = Shader.PropertyToID("_Height");
+        private static readonly int FillProgressID = Shader.PropertyToID("_Fill_Progress");
+        private static readonly int HeightID = Shader.PropertyToID("_Height");
 
-        private int _amountMaterials;
+        private int amountMaterials;
 
         [ContextMenu(nameof(GetElements))]
         private void GetElements()
@@ -24,7 +24,7 @@ namespace Construction.Building
         [ContextMenu(nameof(Setup))]
         public void Setup()
         {
-            _amountMaterials = mainRenderer.materials.Length;
+            amountMaterials = mainRenderer.materials.Length;
             UpdateHeightMaterials(GetHeightMesh());
         }
 
@@ -38,17 +38,17 @@ namespace Construction.Building
 
         public void UpdateFillMaterials(float fillPercent)
         {
-            for (int i = 0; i < _amountMaterials; i++)
+            for (int i = 0; i < amountMaterials; i++)
             {
-                mainRenderer.materials[i].SetFloat(_fillProgressID, fillPercent);
+                mainRenderer.materials[i].SetFloat(FillProgressID, fillPercent);
             }
         }
 
         public void UpdateHeightMaterials(float height)
         {
-            for (int i = 0; i < _amountMaterials; i++)
+            for (int i = 0; i < amountMaterials; i++)
             {
-                mainRenderer.materials[i].SetFloat(_heightID, height);
+                mainRenderer.materials[i].SetFloat(HeightID, height);
             }
         }
     }

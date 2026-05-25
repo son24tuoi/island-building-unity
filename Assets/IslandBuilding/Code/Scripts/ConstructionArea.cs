@@ -1,9 +1,8 @@
 using UnityEngine;
 using System.Collections;
 using System.Collections.Generic;
-using Construction.Building;
 
-namespace Construction
+namespace One.IslandBuilding
 {
     public class ConstructionArea : MonoBehaviour
     {

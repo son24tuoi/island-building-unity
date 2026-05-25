@@ -1,6 +1,6 @@
 using UnityEngine;
 
-namespace Construction
+namespace One.IslandBuilding
 {
     public class DecorationObject : MonoBehaviour
     {

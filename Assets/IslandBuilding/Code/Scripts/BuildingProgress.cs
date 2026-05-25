@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-namespace Construction.Building
+namespace One.IslandBuilding
 {
     public class BuildingProgress : MonoBehaviour
     {

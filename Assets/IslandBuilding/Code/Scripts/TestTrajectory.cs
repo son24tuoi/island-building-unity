@@ -1,9 +1,9 @@
 using System.Collections;
 using System.Collections.Generic;
-using Construction.Extensions;
+using One.IslandBuilding.Extensions;
 using UnityEngine;
 
-namespace Construction
+namespace One.IslandBuilding
 {
     public class TestTrajectory : MonoBehaviour
     {

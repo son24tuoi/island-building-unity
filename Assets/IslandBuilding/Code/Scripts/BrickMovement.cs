@@ -3,7 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-namespace Construction
+namespace One.IslandBuilding
 {
     public class BrickMovement : MonoBehaviour
     {
@@ -13,14 +13,13 @@ namespace Construction
         private float timeToMove;
         private float timeTrajectory;
 
-        public void Setup(BrickTrajectory brickTrajectory, float timeToMove)
+        public void Setup(float timeToMove)
         {
-            this.brickTrajectory = brickTrajectory;
             this.timeToMove = timeToMove;
             timeTrajectory = brickTrajectory.TotalTime;
         }
 
-        public void Move(Action onComplete)
+        public void Move(Action onComplete = null)
         {
             StartCoroutine(IEMove(onComplete));
         }

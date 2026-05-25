@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-namespace Construction.Extensions
+namespace One.IslandBuilding.Extensions
 {
     public static class VectorExtensions
     {
