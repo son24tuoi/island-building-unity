@@ -20,16 +20,17 @@ namespace One.IslandBuilding
             }
         }
 
-        public void Setup(Transform start, Transform target, Action onComplete = null)
+        public void Setup(Transform start, BuildingProgress target, float fillRate, Action onComplete = null)
         {
             gameObject.SetActive(true);
 
-            trajectory.Setup(start, target);
+            trajectory.Setup(start, target.Transform);
             movement.Setup(trajectory.TotalTime);
 
             movement.Move(() =>
             {
                 PoolManager.ReturnToPool(PoolType.Brick, gameObject);
+                target.AddFill(fillRate);
                 onComplete?.Invoke();
             });
         }

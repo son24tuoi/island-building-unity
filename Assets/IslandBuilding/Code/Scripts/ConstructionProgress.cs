@@ -1,6 +1,7 @@
 using UnityEngine;
 using System.Collections;
 using System.Collections.Generic;
+using System;
 
 namespace One.IslandBuilding
 {
@@ -13,6 +14,8 @@ namespace One.IslandBuilding
         [SerializeField] private int currentIndex = 0;
 
         [SerializeField] private bool isDone = false;
+
+        public static event Action OnBuildDoneEvent;
 
         public BuildingProgress CurrentBuilding => currentBuilding;
 
@@ -76,6 +79,7 @@ namespace One.IslandBuilding
                 else
                 {
                     isDone = true;
+                    OnBuildDoneEvent?.Invoke();
                 }
             }
         }

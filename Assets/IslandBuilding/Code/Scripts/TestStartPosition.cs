@@ -9,6 +9,11 @@ namespace One.IslandBuilding
         [SerializeField] private RectTransform buttonRT;
         [SerializeField] private float distance = 1f;
 
+        private void Start()
+        {
+            GetPosUI();
+        }
+
         [ContextMenu(nameof(GetPosUI))]
         public void GetPosUI()
         {
