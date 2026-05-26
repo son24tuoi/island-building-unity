@@ -10,21 +10,25 @@ namespace One.IslandBuilding
         [SerializeField] private PoolManager poolManager;
 
         [SerializeField] private Transform start;
-        [SerializeField] private Transform target;
-
-        private float progress = 0f;
+        
+        [SerializeField][Range(0f, 1f)] private float fillRate = 0.01f;
 
         private Brick GetBrick() => poolManager.Get<Brick>(PoolType.Brick);
 
         public void LaunchBrick()
         {
+            if (constructionProgress.IsDone)
+                return;
+
             Brick brick = GetBrick();
-            brick.Setup(start, target, Build);
+            brick.Setup(start, constructionProgress.CurrentBuilding.Transform, Build);
+
+            constructionProgress.BuildTarget(fillRate);
         }
 
         private void Build()
         {
-            constructionProgress.Build(progress += 0.01f);
+            constructionProgress.Build(fillRate);
         }
     }
 }

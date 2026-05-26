@@ -10,6 +10,8 @@ namespace One.IslandBuilding
         [SerializeField] private BuildingProgress[] buildingProgressArray;
         [SerializeField] private DecorationObject[] decorationObjects;
 
+        public int BuildingCount => buildingProgressArray.Length;
+
         [ContextMenu(nameof(GetElements))]
         private void GetElements()
         {
@@ -30,6 +32,14 @@ namespace One.IslandBuilding
 
             buildingProgressArray = buildingProgressList.ToArray();
             decorationObjects = decorationObjectList.ToArray();
+        }
+
+        public void Init()
+        {
+            for (int i = 0; i < buildingProgressArray.Length; i++)
+            {
+                buildingProgressArray[i].Init();
+            }
         }
 
         public BuildingProgress GetBuildingProgress(int index)

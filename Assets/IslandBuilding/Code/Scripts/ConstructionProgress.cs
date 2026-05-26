@@ -8,33 +8,76 @@ namespace One.IslandBuilding
     {
         [SerializeField] private ConstructionArea constructionArea;
 
-        private BuildingProgress currentBuiding;
+        [SerializeField] private BuildingProgress currentBuilding;
 
-        public bool IsDoneCurrentBuilding => currentBuiding.IsDone;
+        [SerializeField] private int currentIndex = 0;
 
-        public bool IsDone() => constructionArea.IsDone();
+        [SerializeField] private bool isDone = false;
+
+        public BuildingProgress CurrentBuilding => currentBuilding;
+
+        public bool IsDone => isDone;
 
         public void LoadAllBuildingProgress(float[] datas) => constructionArea.LoadAllBuildingProgress(datas);
 
         private void Start()
         {
-            SelectBuilding(0);
+            constructionArea.Init();
+
+            SetCurrentBuilding(0);
+
+            isDone = constructionArea.IsDone();
+        }
+
+        public void SetCurrentBuilding(int index)
+        {
+            currentIndex = index;
+            SelectBuilding(currentIndex);
         }
 
         public void SelectBuilding(int index)
         {
-            currentBuiding = constructionArea.GetBuildingProgress(index);
+            currentBuilding = constructionArea.GetBuildingProgress(index);
         }
 
-        public void Build(float progress)
+        public void Build(float fillRate)
         {
-            if (currentBuiding == null)
+            if (isDone)
+                return;
+
+            if (currentBuilding == null)
             {
                 Debug.Log("current Building is null");
                 return;
             }
 
-            currentBuiding.Fill(progress);
+            currentBuilding.AddFill(fillRate);
+        }
+
+        public void BuildTarget(float fillRate)
+        {
+            if (isDone)
+                return;
+
+            if (currentBuilding == null)
+            {
+                Debug.Log("current Building is null");
+                return;
+            }
+
+            currentBuilding.AddFillTarget(fillRate);
+
+            if (currentBuilding.IsDone)
+            {
+                if (currentIndex < constructionArea.BuildingCount - 1)
+                {
+                    SetCurrentBuilding(++currentIndex);
+                }
+                else
+                {
+                    isDone = true;
+                }
+            }
         }
     }
 }

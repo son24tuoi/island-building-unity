@@ -347,12 +347,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   buttonRT: {fileID: 1668096800}
-  d: 1
---- !u!4 &264723226 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: 7525832355532950987, guid: 432de8c61e4c68947afb0aad84c4c099, type: 3}
-  m_PrefabInstance: {fileID: 129754487875751216}
-  m_PrefabAsset: {fileID: 0}
+  distance: 1
 --- !u!1 &311949753
 GameObject:
   m_ObjectHideFlags: 0
@@ -450,7 +445,7 @@ Light:
   m_Type: 1
   m_Shape: 0
   m_Color: {r: 1, g: 0.95686275, b: 0.8392157, a: 1}
-  m_Intensity: 1
+  m_Intensity: 1.3
   m_Range: 10
   m_SpotAngle: 30
   m_InnerSpotAngle: 21.80208
@@ -508,13 +503,13 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 705507993}
   serializedVersion: 2
-  m_LocalRotation: {x: 0.32374436, y: 0.5825634, z: -0.27165374, w: 0.6942721}
+  m_LocalRotation: {x: 0.38302222, y: 0.38302222, z: -0.17860618, w: 0.82139385}
   m_LocalPosition: {x: 0, y: 3, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_LocalEulerAnglesHint: {x: 50, y: 80, z: 0}
+  m_LocalEulerAnglesHint: {x: 50, y: 50, z: 0}
 --- !u!1 &963194225
 GameObject:
   m_ObjectHideFlags: 0
@@ -638,6 +633,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   constructionArea: {fileID: 6427302355956000270}
+  currentBuilding: {fileID: 0}
+  currentIndex: 0
+  isDone: 0
 --- !u!114 &1375924754
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -653,7 +651,7 @@ MonoBehaviour:
   constructionProgress: {fileID: 0}
   poolManager: {fileID: 0}
   start: {fileID: 0}
-  target: {fileID: 0}
+  fillRate: 0.01
 --- !u!4 &1375924755
 Transform:
   m_ObjectHideFlags: 0
@@ -717,7 +715,7 @@ MonoBehaviour:
   constructionProgress: {fileID: 1421805775}
   poolManager: {fileID: 56841022}
   start: {fileID: 211567317}
-  target: {fileID: 264723226}
+  fillRate: 0.01
 --- !u!114 &1421805775
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -731,6 +729,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   constructionArea: {fileID: 6427302355956000270}
+  currentBuilding: {fileID: 0}
+  currentIndex: 0
+  isDone: 0
 --- !u!1 &1668096799
 GameObject:
   m_ObjectHideFlags: 0
